@@ -4,7 +4,7 @@ Created on Thu May  6 15:59:04 2021
 
 @author: admin
 """
-import requests
+
 from api.base_api import BaseApi
 from api.wework import WeWork
 
