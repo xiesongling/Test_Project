@@ -36,6 +36,7 @@ if __name__=='__main__':
         #pytest.main(['-s',"--collect-only"])
         #-m,运行标记为a的用例
         #pytest.main(['-s',"-m a"])
+        #-s -n auto 自动识别有多少可用的cpu来运行用例
         pytest.main(['-s',"-n",'auto'])
         #pytest.main(['test_pytest.py::TestAdd::test_case4','-s','-n',"auto"])
         
