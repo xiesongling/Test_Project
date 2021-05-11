@@ -4,16 +4,7 @@ Created on Fri May  7 11:52:59 2021
 
 @author: admin
 """
-
-data={
-            "method":"post",
-            "url":"https://test-calling-api.apyfc.com/calling/community/app/api/v3/login",
-            "jason":{
-            "loginType": "pwd",
-            "loginWithPwdRequest": {
-                  "mobile": "13545424538",
-                  "pwd": "123456"} 
-            }
-            }
-
-type(data)
+import base64
+import json
+code="4e75a8ad5d5aa89e503e3537afb1fe9f"
+print(base64.b64decode(code))

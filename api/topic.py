@@ -7,10 +7,13 @@ Created on Thu May  6 15:59:04 2021
 
 from api.base_api import BaseApi
 from api.wework import WeWork
+import yaml
 
 #继承为BaseApi
 class Topic(BaseApi):
- 
+    
+    env=yaml.safe_load(open("../api/env.yaml"))
+    url=env["testing-status"][env["default"]]
     def __init__(self):  #__init__函数：创建一个对象时默认被调用
         self.token=WeWork().token()
         
@@ -19,7 +22,8 @@ class Topic(BaseApi):
         
         data={
               "method":"get",
-              "url":"https://test-calling-api.apyfc.com/calling/community/app/api/v3/topic/list",
+              "url":self.url+"/app/api/v3/topic/list",
+              "headers":{"token":self.token},
               "params":{
                   "userId":userId,
                   "type":type,
@@ -28,4 +32,6 @@ class Topic(BaseApi):
                   "pageSize":pageSize}
               }
         res=self.send(**data)
-        return res
+        return res.url
+
+print(Topic().url)
