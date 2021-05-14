@@ -34,4 +34,3 @@ class Topic(BaseApi):
         res=self.send(**data)
         return res.url
 
-print(Topic().url)

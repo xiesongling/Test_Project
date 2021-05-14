@@ -1,0 +1,8 @@
+method: post
+url: https://test-calling-api.apyfc.com/calling/community/app/api/v3/login
+json:
+ loginType: pwd
+ loginWithPwdRequest:
+  mobile: $mobile
+  pwd: $pwd
+             
