@@ -12,7 +12,7 @@ import yaml
 #继承为BaseApi
 class Topic(BaseApi):
     
-    env=yaml.safe_load(open("../api/env.yaml"))
+    env=yaml.safe_load(open("../api/env.yaml",encoding='utf-8'))
     url=env["testing-status"][env["default"]]
     def __init__(self):  #__init__函数：创建一个对象时默认被调用
         self.token=WeWork().token()
