@@ -32,5 +32,5 @@ class Topic(BaseApi):
                   "pageSize":pageSize}
               }
         res=self.send(**data)
-        return res.url
+        return res
 
