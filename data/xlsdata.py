@@ -5,8 +5,6 @@ Created on Wed Jun  9 16:23:32 2021
 @author: admin
 """
 import xlrd
-import xlwt
-import json
 class XlsData:
     
     workbook = None
@@ -54,11 +52,7 @@ class XlsData:
         # todo:没有验证是否可用
 
 
-xlsdata=XlsData()
-xlsdata.open_excel("easycook.xlsx")
-a=xlsdata.get_sheet("首页")
-b=xlsdata.get_content(a, 0, 0)
-print(b)
+
 
 
 

@@ -9,12 +9,11 @@ import pytest
 import yaml
 from api.base_api import BaseApi
 class WeWork(BaseApi):
-    #mobile="13545424538"
-    #pwd="123456"
+    
     token_data=yaml.safe_load(open("../data/get_token_data.yaml",encoding='utf-8'))["data"]
    
     #获取token
-    pytest.mark.parametrize("data",token_data)
+    
     def template(self):
         with open("../api/get_token.yaml",encoding='utf-8') as f:
 # =============================================================================

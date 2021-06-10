@@ -18,19 +18,20 @@ class Topic(BaseApi):
         self.token=WeWork().token()
         
     #获取话题列表
-    def get(self,userId,type,communityCode,pageIndex,pageSize):
-        
-        data={
-              "method":"get",
-              "url":self.url+"/app/api/v3/topic/list",
-              "headers":{"token":self.token},
-              "params":{
-                  "userId":userId,
-                  "type":type,
-                  "communityCode":communityCode,
-                  "pageIndex":pageIndex,
-                  "pageSize":pageSize}
-              }
+    def get(self,data):
+        '''        
+                data={
+                      "method":"get",
+                      "url":self.url+"/app/api/v3/topic/list",
+                      "headers":{"token":self.token},
+                      "params":{
+                          "userId":userId,
+                          "type":type,
+                          "communityCode":communityCode,
+                          "pageIndex":pageIndex,
+                          "pageSize":pageSize}
+                      }
+        '''
         res=self.send(**data)
         return res
 
