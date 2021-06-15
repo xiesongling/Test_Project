@@ -20,7 +20,7 @@ class TestTopic:
     def test_token(self):
         print(self.topic.token)
     #数据驱动
-    @pytest.mark.parametrize("data",data)    
+    #@pytest.mark.parametrize("userId,type,communityCode,pageIndex,pageSize",[(1018,1,"4dd2457e322ce8b8",1,15)])    
     def test_get_topic(self):
           res=self.topic.get(self.data)
           print(res)
