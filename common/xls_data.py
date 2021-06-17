@@ -29,8 +29,9 @@ class XlsData:
                 s["rownum"]=i+2
                 values=self.worksheet.row_values(j)
                 for x in range(self.colnum):
-                    s[self.keys[x]]=values[x]
-                r.append(s)
+                    s[self.keys[x]]=values[x].replace("\n","").replace(" ","")
+                r.append(s)#append()在列表末尾添加新的对象
+                j+=1
             return r    
 if __name__ == "__main__":
     filepath = "../data/easycook.xlsx"
