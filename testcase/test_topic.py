@@ -6,29 +6,39 @@ Created on Fri May  7 11:08:18 2021
 测试用例
 """
 import pytest
-import json
+
 from api.topic import Topic
-from api.base_api import BaseApi
+#from api.base_api import BaseApi
+from common.xls_data import XlsData
 
 class TestTopic:
-    baseapi=BaseApi()
-    data=json.loads(baseapi.get_xlsdata())
+    
+    filepath = "../data/easycook.xlsx"
+    sheetName = "首页"
+    xlsdata=XlsData(filepath, sheetName)
+    url=xlsdata.env_data()
+    data = xlsdata.dict_data(url)
+    
+   
     def setup(self):
         self.topic=Topic()
         
         
-    def test_token(self):
-        print(self.topic.token)
+    
     #数据驱动
-    #@pytest.mark.parametrize("userId,type,communityCode,pageIndex,pageSize",[(1018,1,"4dd2457e322ce8b8",1,15)])    
-    def test_get_topic(self):
-          res=self.topic.get(self.data)
+    @pytest.mark.parametrize("data",[*data])    
+    def test_get_topic(self,data):
+          
+          res=self.topic.get(data)
           print(res)
-          assert res["message"]=="业务成功"
+          #assert res["message"]=="业务成功"
           
    
 
 
 if __name__=='__main__':
+    
+    
     pytest.main(['-s','-v'])
+    
     
