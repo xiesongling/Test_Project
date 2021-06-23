@@ -6,6 +6,7 @@ Created on Fri May  7 11:08:18 2021
 测试用例
 """
 import pytest
+import json
 
 from api.topic import Topic
 #from api.base_api import BaseApi
@@ -19,6 +20,7 @@ class TestTopic:
     url=xlsdata.env_data()
     data = xlsdata.dict_data(url)
     
+    
    
     def setup(self):
         self.topic=Topic()
@@ -28,7 +30,7 @@ class TestTopic:
     #数据驱动
     @pytest.mark.parametrize("data",[*data])    
     def test_get_topic(self,data):
-          
+          data["headers"]=json.loads(data["headers"])
           res=self.topic.get(data)
           print(res)
           #assert res["message"]=="业务成功"

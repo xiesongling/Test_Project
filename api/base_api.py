@@ -9,5 +9,5 @@ import requests
 
 class BaseApi:
     def send(self,**data):   #两个星（**）：表示接收的参数作为字典来处理
-        return requests.request(**data).json()
+        return requests.request(**data,verify=False).json()
     

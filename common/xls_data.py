@@ -10,7 +10,7 @@ class XlsData:
     def __init__(self,path,sheetname):
         self.workbook=xlrd.open_workbook(path)
         self.worksheet=self.workbook.sheet_by_name(sheetname)
-        #获取第一行作为key值
+        #获取第二行作为key值
         self.keys=self.worksheet.row_values(1)
         #获取总行数
         self.rownum=self.worksheet.nrows
@@ -29,13 +29,14 @@ class XlsData:
         else:
             r=[]
             j=2
-            for i in range(self.rownum-2):
+            for i in list(range(self.rownum-2)):
                 s={}
                 #从第三行取value值
                 values=self.worksheet.row_values(j)
-                for x in range(self.colnum):
+                for x in list(range(self.colnum)):
                     s[self.keys[x]]=values[x].replace("\n","").replace(" ","")
-                s["url"]=url+s["url"]
+                s["headers"]=json.loads(s["headers"])
+                s["url"]=url+s["url"] 
                 r.append(s)#append()在列表末尾添加新的对象
                 j+=1
             return r    
@@ -44,5 +45,8 @@ if __name__ == "__main__":
     sheetName = "首页"
     data = XlsData(filepath, sheetName)
     env=XlsData(filepath, sheetName).env_data()
-    print(data.dict_data(env))
+    a=data.dict_data(env)[0]["headers"]
+    #a=json.loads(a)
+    print(a)
+    #print(type(a))
             
