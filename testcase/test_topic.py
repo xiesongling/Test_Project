@@ -9,7 +9,7 @@ import pytest
 import json
 
 from api.topic import Topic
-#from api.base_api import BaseApi
+from api.base_api import BaseApi
 from common.xls_data import XlsData
 
 class TestTopic:
@@ -23,15 +23,16 @@ class TestTopic:
     
    
     def setup(self):
-        self.topic=Topic()
+        self.baseapi=BaseApi()
         
         
     
     #数据驱动
     @pytest.mark.parametrize("data",[*data])    
     def test_get_topic(self,data):
-          data["headers"]=json.loads(data["headers"])
-          res=self.topic.get(data)
+          
+          res=self.baseapi.sen_request(data)
+          print(data)
           print(res)
           #assert res["message"]=="业务成功"
           

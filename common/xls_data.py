@@ -34,8 +34,10 @@ class XlsData:
                 #从第三行取value值
                 values=self.worksheet.row_values(j)
                 for x in list(range(self.colnum)):
+                    
                     s[self.keys[x]]=values[x].replace("\n","").replace(" ","")
-                s["headers"]=json.loads(s["headers"])
+                
+                #print(type[s[self.keys[1]]])
                 s["url"]=url+s["url"] 
                 r.append(s)#append()在列表末尾添加新的对象
                 j+=1
@@ -45,8 +47,9 @@ if __name__ == "__main__":
     sheetName = "首页"
     data = XlsData(filepath, sheetName)
     env=XlsData(filepath, sheetName).env_data()
-    a=data.dict_data(env)[0]["headers"]
+    a=data.dict_data(env)
     #a=json.loads(a)
     print(a)
     #print(type(a))
-            
+    
+          
