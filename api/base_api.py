@@ -29,6 +29,7 @@ class BaseApi:
             bodydata=eval(testdata["body"])
         except:
             bodydata={}
+        
         verify=False
         # 判断传data数据还是json   
         type=testdata["type"]
@@ -47,10 +48,11 @@ class BaseApi:
                 data=body,
                 verify=verify
                 )
-            return r.json()
+            return r
         except Exception as msg:
             msg=str(msg)
             return r
+
         
            
         

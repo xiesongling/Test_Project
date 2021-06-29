@@ -7,6 +7,7 @@ Created on Fri May  7 11:08:18 2021
 """
 import pytest
 import json
+import re
 
 from api.topic import Topic
 from api.base_api import BaseApi
@@ -31,10 +32,21 @@ class TestTopic:
     @pytest.mark.parametrize("data",[*data])    
     def test_get_topic(self,data):
           
-          res=self.baseapi.sen_request(data)
-          print(data)
+          res=self.baseapi.sen_request(data).json()
+          print(type(res))
+          res=json.dumps(res, ensure_ascii=False)
+          check=data["checkpoint"]
+          #返回结果
+          
+         
           print(res)
-          #assert res["message"]=="业务成功"
+          #断言
+          ru=r'\".*?\":( )*\".*?\"'
+          it = re.finditer(ru,check) 
+          for i in it:
+              item=i.group()
+              assert item in res
+          
           
    
 

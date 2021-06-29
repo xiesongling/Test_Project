@@ -35,7 +35,7 @@ class XlsData:
                 values=self.worksheet.row_values(j)
                 for x in list(range(self.colnum)):
                     
-                    s[self.keys[x]]=values[x].replace("\n","").replace(" ","")
+                    s[self.keys[x]]=values[x].replace("\n","")#.replace(" ","")
                 
                 #print(type[s[self.keys[1]]])
                 s["url"]=url+s["url"] 
