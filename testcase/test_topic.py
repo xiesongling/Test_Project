@@ -32,7 +32,7 @@ class TestTopic:
     @pytest.mark.parametrize("data",[*data])    
     def test_get_topic(self,data):
           
-          res=self.baseapi.sen_request(data).json()
+          res=self.baseapi.sen_request(data)
           print(type(res))
           res=json.dumps(res, ensure_ascii=False)
           check=data["checkpoint"]
@@ -45,7 +45,12 @@ class TestTopic:
           it = re.finditer(ru,check) 
           for i in it:
               item=i.group()
-              assert item in res
+              try:
+                  assert item in res
+              except AssertionError as e:
+                  print("结果："+res+"不包含校验值："+item)
+                  
+              
           
           
    
@@ -53,7 +58,6 @@ class TestTopic:
 
 if __name__=='__main__':
     
-    
-    pytest.main(['-s','-v'])
+    pytest.main(['-s','-v','--alluredir','../report/xml'])
     
     

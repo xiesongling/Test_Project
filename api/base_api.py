@@ -48,10 +48,10 @@ class BaseApi:
                 data=body,
                 verify=verify
                 )
-            return r
+            return r.json()
         except Exception as msg:
             msg=str(msg)
-            return r
+            return r.text
 
         
            
