@@ -9,7 +9,7 @@ import pytest
 import json
 import re
 
-from api.topic import Topic
+
 from api.base_api import BaseApi
 from common.xls_data import XlsData
 
@@ -20,6 +20,7 @@ class TestTopic:
     xlsdata=XlsData(filepath, sheetName)
     url=xlsdata.env_data()
     data = xlsdata.dict_data(url)
+    
     
     
    
@@ -33,23 +34,32 @@ class TestTopic:
     def test_get_topic(self,data):
           
           res=self.baseapi.sen_request(data)
+          #res=self.baseapi.replaced(res, be_redata)
           print(type(res))
           res=json.dumps(res, ensure_ascii=False)
+          print(type(res))
           check=data["checkpoint"]
           #返回结果
           
          
           print(res)
+          assert check in res
           #断言
-          ru=r'\".*?\":( )*\".*?\"'
-          it = re.finditer(ru,check) 
-          for i in it:
-              item=i.group()
-              try:
-                  assert item in res
-              except AssertionError as e:
-                  print("结果："+res+"不包含校验值："+item)
-                  
+          #ru=r'\".*?\":( )*\".*?\"'
+          #ru=r'\".*?\":( )*.*'
+          #it = re.finditer(ru,check)
+          #for i in it:
+              #item=i.group()
+              #print(item)
+          #assert item in res
+          #try:
+             #assert (item in res)
+          #except:
+              #pass
+             #print("结果："+res+"不包含校验值："+item)
+          #print(item in res)   
+          #print(item)
+          
               
           
           

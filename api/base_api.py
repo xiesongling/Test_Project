@@ -19,6 +19,7 @@ class BaseApi:
         url=testdata["url"]
         try:
             headers=eval(testdata["headers"])
+            
         except:
             headers=None
         try:
@@ -52,11 +53,17 @@ class BaseApi:
         except Exception as msg:
             msg=str(msg)
             return r.text
-
-        
-           
-        
+    def replaced(self,redata,be_redata):
+        raw=json.dumps(be_redata)
+        for key,value in redata.items():
+            raw=raw.replace(f'${{{key}}}', value)
+        return raw
             
+        
+        
+b=BaseApi()
+d=b.replaced({"name":"xie"}, {"name":"${name}"})
+print(d)
                 
                 
             

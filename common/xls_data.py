@@ -22,6 +22,12 @@ class XlsData:
         env=json.loads(e)
         self.url=env["testing-status"][env["default"]]
         return self.url
+    
+    def variable_redata(self):
+        r=self.worksheet.row_values(0)[1]
+        redata=json.loads(r)
+        print(type(r))
+        return redata
         
     def dict_data(self,url):
         if self.rownum <=1:
@@ -35,13 +41,19 @@ class XlsData:
                 values=self.worksheet.row_values(j)
                 for x in list(range(self.colnum)):
                     
-                    s[self.keys[x]]=values[x].replace("\n","")#.replace(" ","")
+                    s[self.keys[x]]=values[x].replace("\n","")
                 
                 #print(type[s[self.keys[1]]])
-                s["url"]=url+s["url"] 
+                s["url"]=url+s["url"]
+                raw=json.dumps(s)
+                redata=self.variable_redata()
+                for key,value in redata.items():
+                   raw=raw.replace(f'${{{key}}}', value)
+                s=json.loads(raw)
                 r.append(s)#append()在列表末尾添加新的对象
                 j+=1
             return r    
+'''
 if __name__ == "__main__":
     filepath = "../data/easycook.xlsx"
     sheetName = "首页"
@@ -51,5 +63,5 @@ if __name__ == "__main__":
     #a=json.loads(a)
     print(a)
     #print(type(a))
-    
+'''    
           
